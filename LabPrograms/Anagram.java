@@ -16,6 +16,7 @@ public class Anagram {
         System.out.println("Enter the anagram of given word:");
         String s=sc.next();
         boolean isFound=false;
+        
         for(int i=0;i<str[rand].length();i++){
             isFound=false;
             for(int j=0;j<s.length();j++){
