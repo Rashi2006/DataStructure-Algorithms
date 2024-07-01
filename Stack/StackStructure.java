@@ -11,7 +11,7 @@ class Stack {
     }
 
     void push(int x) {
-        if (top >= n) {
+        if (top >= (n-1)) {
             System.out.println("Stack Overflow");
         } else {
             top = top + 1;
@@ -26,12 +26,12 @@ class Stack {
             return -1;
         } else {
             top = top - 1;
-            return arr[top-1];
+            return arr[top+1];
         }
     }
 
     int peep(int i) {
-        if ((top - i + 1) <= 0) {
+        if ((top - i + 1) <=0 || i<=0) {
             return -1;
         } else {
             return arr[top - i + 1];
@@ -39,7 +39,7 @@ class Stack {
     }
 
     void change(int i, int x) {
-        if ((top - i + 1) <= 0) {
+        if ((top - i + 1) <=0 || i<=0) {
             System.out.println("Invalid Index");
             return;
         } else {
@@ -60,8 +60,8 @@ class Stack {
 public class StackStructure {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        // System.out.println("Enter the size of stack:");
-        int n = 5;
+        System.out.println("Enter the size of stack:");
+        int n = sc.nextInt();
         Stack s = new Stack(n);
         System.out.println("Enter 1 if you want to push element in the stack,");
         System.out.println("Enter 2 if you want to delete element from the stack,");
@@ -120,5 +120,6 @@ public class StackStructure {
             }
         }
         System.out.println("Program Terminates");
+        sc.close();
     }
 }
