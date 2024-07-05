@@ -1,1 +1,0 @@
-li.insertAtFirst(6);

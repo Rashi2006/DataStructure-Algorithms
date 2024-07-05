@@ -1,10 +1,10 @@
 import java.util.Scanner;
-class Stack {
+class MyStack {
     int top = -1;
     int n;
     char[] arr;
 
-    Stack(int n) {
+    MyStack(int n) {
         this.n = n;
         arr = new char[n];
     }
