@@ -1,17 +1,17 @@
 import java.util.Scanner;
 
-public class DeleteDuplicatesFromSinglyLL {
-    class Node {
+public class ReverseLinkedList {
+    class Node{
         int info;
         Node link;
 
-        public Node(int data) {
-            info = data;
-            link = null;
+        public Node(int data){
+            this.info = data;
+            this.link = null;
         }
     }
-
-    Node first = null;
+    
+    Node first=null;
 
     public void insertAtFirst(int data) {
         // New Node created from availability stack
@@ -22,6 +22,7 @@ public class DeleteDuplicatesFromSinglyLL {
             first = newNode;
             return;
         }
+
         // reference variable save: which will store the address of the first node
         Node save = first;
         // Make the newNode the first node
@@ -42,50 +43,31 @@ public class DeleteDuplicatesFromSinglyLL {
         }
         System.out.println("");
     }
-
-    public void deleteDuplicates() {
-
-        //Check if the Linked list is empty
+    
+    public void reverse(){
         if (first == null) {
-            display();
+            System.out.println("List is empty");
             return;
         }
-
-        //Declare a pointer variable SAVE 
         Node save = first;
-
-        while (save != null) {
-            // Temp will hold the duplicate key to be deleted 
-            Node temp = save.link;
-            //prev Node as we need to change temp.link
-            Node prev = save;
-            
-            while (temp != null) {
-                if (save.info == temp.info) {
-                    //unlink Node from the linked List
-                    prev.link = temp.link;
-                } else {
-                    prev = temp;
-                }
-                //now temp will point to next Node 
-                temp = temp.link;
-            }
-            //save will point to it's adjacent Node to search 
-            //all the duplicates from the rest of the list
-            save = save.link;
+        Node prev = null;
+        while(save != null){
+            Node temp=save.link;
+            save.link = prev;
+            prev=save;
+            save=temp;
         }
-        //call display() method to display the linked list 
+        first=prev;
         display();
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        DeleteDuplicatesFromSinglyLL list = new DeleteDuplicatesFromSinglyLL();
+        ReverseLinkedList list = new ReverseLinkedList();
 
         System.out.println("Enter 1 for inserting nubers into linked list,");
         System.out.println("Enter 2 if you want to see your LL,");
-        System.out.println("Enter 3 to delete the duplicates .");
+        System.out.println("Enter 3 to reverse your Linked List .");
 
         boolean istheEnd = false;
         while (true) {
@@ -101,7 +83,7 @@ public class DeleteDuplicatesFromSinglyLL {
                     list.display();
                     break;
                 case 3:
-                    list.deleteDuplicates();
+                    list.reverse();
                     istheEnd = true;
                     break;
                 default:

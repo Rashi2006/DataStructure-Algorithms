@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class DeleteDuplicatesFromSinglyLL {
+public class GCDBtwnTwoNodes {
     class Node {
         int info;
         Node link;
@@ -22,6 +22,7 @@ public class DeleteDuplicatesFromSinglyLL {
             first = newNode;
             return;
         }
+
         // reference variable save: which will store the address of the first node
         Node save = first;
         // Make the newNode the first node
@@ -43,55 +44,48 @@ public class DeleteDuplicatesFromSinglyLL {
         System.out.println("");
     }
 
-    public void deleteDuplicates() {
-
-        //Check if the Linked list is empty
+    public void addGCD(){
         if (first == null) {
-            display();
+            System.out.println("List is empty");
             return;
         }
-
-        //Declare a pointer variable SAVE 
-        Node save = first;
-
-        while (save != null) {
-            // Temp will hold the duplicate key to be deleted 
-            Node temp = save.link;
-            //prev Node as we need to change temp.link
-            Node prev = save;
-            
-            while (temp != null) {
-                if (save.info == temp.info) {
-                    //unlink Node from the linked List
-                    prev.link = temp.link;
-                } else {
-                    prev = temp;
-                }
-                //now temp will point to next Node 
-                temp = temp.link;
-            }
-            //save will point to it's adjacent Node to search 
-            //all the duplicates from the rest of the list
-            save = save.link;
+       
+        Node save=first;
+        while(save!=null && save.link!=null){
+            int a=getGCD(save.info,save.link.info );
+            Node newNode = new Node(a);
+            newNode.link=save.link;
+            save.link=newNode;
+            save=newNode.link;
         }
-        //call display() method to display the linked list 
         display();
+        return;
     }
 
+    public int getGCD(int a , int b){
+        int i=1;
+        int max=1;
+        while(i<=a && i<=b){
+            if(a%i==0 && b%i==0){
+                max=i;
+            }
+            i++;
+        }
+        return max;
+    }
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        DeleteDuplicatesFromSinglyLL list = new DeleteDuplicatesFromSinglyLL();
-
-        System.out.println("Enter 1 for inserting nubers into linked list,");
-        System.out.println("Enter 2 if you want to see your LL,");
-        System.out.println("Enter 3 to delete the duplicates .");
-
-        boolean istheEnd = false;
-        while (true) {
+        GCDBtwnTwoNodes list = new GCDBtwnTwoNodes();
+        System.out.println("Enter 1 for inserting elements into 1st Linked List,");
+        System.out.println("Enter 2 for displaying Linkedlist");
+        System.out.println("Enter 3 for displaying LinkedList with GCD");
+        
+        boolean isTheEnd=false;
+        while(true){
             System.out.println("Enter your choice:");
             int choice = sc.nextInt();
-            switch (choice) {
+            switch(choice){
                 case 1:
                     System.out.println("Enter the element to be inserted:");
                     int n = sc.nextInt();
@@ -101,13 +95,13 @@ public class DeleteDuplicatesFromSinglyLL {
                     list.display();
                     break;
                 case 3:
-                    list.deleteDuplicates();
-                    istheEnd = true;
+                    isTheEnd = true;
+                    list.addGCD();
                     break;
                 default:
                     System.out.println("invalid choice");
             }
-            if (istheEnd) {
+            if(isTheEnd){
                 break;
             }
         }

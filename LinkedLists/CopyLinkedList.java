@@ -52,7 +52,7 @@ public class CopyLinkedList{
             copy.insertAtLast(save.info);
             save=save.link;
         }
-        copy.display();
+        // copy.display();
         return;
     }
 
@@ -80,6 +80,7 @@ public class CopyLinkedList{
                     isTheEnd = true;
                     CopyLinkedList list2 = new CopyLinkedList();
                     list1.copyList(list2);
+                    list2.display();
                     break;
                 default:
                     System.out.println("invalid choice");

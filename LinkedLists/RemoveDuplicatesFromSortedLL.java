@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class DeleteDuplicatesFromSinglyLL {
+public class RemoveDuplicatesFromSortedLL {
     class Node {
         int info;
         Node link;
@@ -22,6 +22,7 @@ public class DeleteDuplicatesFromSinglyLL {
             first = newNode;
             return;
         }
+
         // reference variable save: which will store the address of the first node
         Node save = first;
         // Make the newNode the first node
@@ -42,46 +43,69 @@ public class DeleteDuplicatesFromSinglyLL {
         }
         System.out.println("");
     }
+     
+    public void sortLinkedList(){
+        if (first == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node save=first;
+        Node prev=null;
+        boolean isChanged=true;
+        while(isChanged){
+            isChanged=false;
+            save=first;
+            prev=null;
+            while(save!=null && save.link!=null){
+                 if(save.info>save.link.info){
+                    Node temp=save.link;
+                    save.link=temp.link;
+                    temp.link=save;
+
+                    if(prev==null){
+                        first=temp;
+                    }else{
+                        prev.link=temp;
+                    }
+                    prev=temp;
+                    isChanged=true;
+                 }else{
+                    prev=save;
+                    save=save.link;
+                 }
+              
+            }
+        } 
+        return;
+    }
 
     public void deleteDuplicates() {
-
-        //Check if the Linked list is empty
         if (first == null) {
             display();
             return;
         }
-
-        //Declare a pointer variable SAVE 
         Node save = first;
 
         while (save != null) {
-            // Temp will hold the duplicate key to be deleted 
-            Node temp = save.link;
-            //prev Node as we need to change temp.link
             Node prev = save;
-            
+            Node temp = save.link;
             while (temp != null) {
                 if (save.info == temp.info) {
-                    //unlink Node from the linked List
                     prev.link = temp.link;
                 } else {
                     prev = temp;
                 }
-                //now temp will point to next Node 
                 temp = temp.link;
             }
-            //save will point to it's adjacent Node to search 
-            //all the duplicates from the rest of the list
             save = save.link;
         }
-        //call display() method to display the linked list 
         display();
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        DeleteDuplicatesFromSinglyLL list = new DeleteDuplicatesFromSinglyLL();
+        RemoveDuplicatesFromSortedLL list = new RemoveDuplicatesFromSortedLL();
 
         System.out.println("Enter 1 for inserting nubers into linked list,");
         System.out.println("Enter 2 if you want to see your LL,");
@@ -101,6 +125,7 @@ public class DeleteDuplicatesFromSinglyLL {
                     list.display();
                     break;
                 case 3:
+                    list.sortLinkedList();
                     list.deleteDuplicates();
                     istheEnd = true;
                     break;

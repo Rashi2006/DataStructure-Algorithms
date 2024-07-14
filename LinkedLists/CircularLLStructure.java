@@ -37,17 +37,59 @@ public class CircularLLStructure {
         }
         
         public void deleteAtAnyPosition(int x){
-            
+            //If Linked List is empty
+            if(first==null){
+                System.out.println("List is empty");
+                return;
+            }
+            //If user wants to delete first Node
+            if(first.info==x){
+                //When only one Node is present in Linked List
+                if(first==last){
+                    first=last=null;
+                    System.out.println("Node deleted Successfully");
+                    return;
+                }
+                //When more than one Node is present in Linked List
+                first=first.link;
+                last.link=first;
+                System.out.println("Node deleted Successfully");
+                return;
+            }
+            Node save=first;
+            Node prev=save;
+            //Traverse Through the Linked List to find the key to be deleted
+            while(save!=last && save.info!=x){
+                prev=save;
+                save=save.link;
+            }
+            //When Key is not present in the Linked List
+            if(save.info!=x){
+                System.out.println("Node not Found");
+                return;
+            }
+            //delete the key from the Linked List
+            prev.link=save.link;
+            //when save is the last Node then point last to the prev Node
+            if(save==last){
+                last=prev;
+                return;
+            }
+            System.out.println("Node deleted Successfully");
+            return;
         }
         public void display(){
             if(first==null){
                 System.out.println("List is empty");
+                return;
             }
             Node save=first;
             do{
-                System.out.println(save.info);
+                System.out.print(save.info + "-->");
                 save=save.link;
             }while(save!=first);
+            System.out.print("last");
+            System.out.println("");
         }
 
         public int sizeOfCircularLinkedList(){

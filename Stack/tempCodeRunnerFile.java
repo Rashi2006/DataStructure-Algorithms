@@ -1,1 +1,1 @@
-System.out.println("Element is pushed successfully");
+st.postFix(s)

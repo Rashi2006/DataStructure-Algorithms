@@ -62,7 +62,7 @@ public class StackStructure {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the size of stack:");
         int n = sc.nextInt();
-        Stack s = new Stack(n);
+        MyStack s = new MyStack(n);
         System.out.println("Enter 1 if you want to push element in the stack,");
         System.out.println("Enter 2 if you want to delete element from the stack,");
         System.out.println("Enter 3 if you want to see the any element of the stack,");
