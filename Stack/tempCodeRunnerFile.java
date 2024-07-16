@@ -1,1 +1,1 @@
-st.postFix(s)
+System.out.

@@ -58,6 +58,10 @@ class MyStack {
         }
         return;
     }
+
+    int size(){
+        return top + 1;
+    }
 }
 public class SetIntervals {
     public static void main(String[] args) {
@@ -73,16 +77,26 @@ public class SetIntervals {
          
         MyStack st = new MyStack(n);;
 
-        for(int i=0;i<n-1;i++){
-            if((intervals[i][1]<intervals[i+1][0]) ){
-                st.push(intervals[i][0],intervals[i][1]);
-            }else if(intervals[i][1]<intervals[i+1][1]){
-                
-                st.push(intervals[i+1][0],intervals[i+1][1]);
-                
-            }else{
-                st.push(intervals[i+1][0],intervals[i+1][1]);
-            }
+        // for(int i=0;i<n;i++){
+        //     st.push(intervals[i][0],intervals[i][1]);
+        // }
+         
+        st.push(intervals[0][0],intervals[0][1]);
+        for(int i=1;i<n;i++){
+           int [] temp=st.pop();
+           if(temp[1]>=intervals[i][0]){
+            st.push(Math.min(temp[0],intervals[i][0]),Math.max(temp[1],intervals[i][1]));
+           }else{
+            st.push(temp[0],temp[1]);
+            st.push(intervals[i][0],intervals[i][1]);
+           }
+        }
+        int [][] ans = new int[n][2];
+        for(int i=st.size()-1;i>=0;i--){
+           ans[i]=st.pop();
+        }
+        for(int i=0;i<ans.length;i++){
+            System.out.println("{"+ans[i][0]+" , "+ans[i][1]+"}");
         }
     }
 }

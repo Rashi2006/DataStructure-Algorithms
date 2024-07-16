@@ -53,14 +53,45 @@ public class SplitCircularLinkedList {
             return count;
         }
 
-        public void split(){
+        public void split(SplitCircularLinkedList list2){
+            if(first==null){
+                System.out.println("List is empty");
+                return;
+            }
+            int count=sizeOfCircularLinkedList();
+            int mid=count/2;
             
-        }
+            Node save=first;
+            Node prev=null;
+            int i=0;
 
+            while(i<mid){
+                prev=save;
+                save=save.link;
+                i++;
+            }
+           
+            
+            prev.link=first;
+
+            list2.first=save;
+            Node temp=save;
+            while(temp.link!=first){
+                temp=temp.link;
+            }
+            temp.link=list2.first;
+            
+            last=prev;
+            list2.last=temp;
+            System.out.println("Split Successful");
+        }
+        
+
+       
          public static void main(String [] args){
         Scanner sc = new Scanner(System.in);
 
-        SplitCircularLinkedList list = new SplitCircularLinkedList();
+        SplitCircularLinkedList list1 = new SplitCircularLinkedList();
 
         System.out.println("Enter 1 for inserting nubers into Circular linked list,");
         System.out.println("Enter 2 if you want to see your LL,");
@@ -74,13 +105,16 @@ public class SplitCircularLinkedList {
                 case 1:
                     System.out.println("Enter the element to be inserted:");
                     int n = sc.nextInt();
-                    list.insertAtFirst(n);
+                    list1.insertAtFirst(n);
                     break;
                 case 2:
-                    list.display();
+                    list1.display();
                     break;
                 case 3:
-                    
+                SplitCircularLinkedList list2 = new SplitCircularLinkedList();
+                    list1.split(list2);
+                    list1.display();
+                    list2.display();
                     istheEnd = true;
                     break;
                 default:
