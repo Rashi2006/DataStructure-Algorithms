@@ -73,10 +73,11 @@ public class SortElements {
                     prev=save;
                     save=save.link;
                  }
-              
+                 
             }
+           
         } 
-        display();
+         display();
         return;
     }
     public static void main(String[] args) {

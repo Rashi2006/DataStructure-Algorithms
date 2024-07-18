@@ -1,1 +1,1 @@
-System.out.
+System.out.println("nums="+num+"i="+i);

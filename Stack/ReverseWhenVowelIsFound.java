@@ -1,18 +1,18 @@
 import java.util.*;
 import java.io.*;
-class Stack {
+class MyStack {
     int top = -1;
     int n;
     char[] arr;
 
-    Stack(int n) {
+    MyStack(int n) {
         this.n = n;
         arr = new char[n];
     }
 
     void push(char x) {
         if (top >= (n-1)) {
-            System.out.println("Stack Overflow");
+            System.out.println("MyStack Overflow");
         } else {
             top = top + 1;
             arr[top] = x;
@@ -44,7 +44,7 @@ public class ReverseWhenVowelIsFound {
             System.out.println("Enter the String:");
             String s=sc.next();
             
-            Stack st = new Stack(N);
+            MyStack st = new MyStack(N);
             for(int i=N-1;i>=0;i--){
                 st.push(s.charAt(i));
             }

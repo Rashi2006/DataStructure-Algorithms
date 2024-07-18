@@ -134,7 +134,7 @@ class MyStack {
     }
 }
 
-public class InfixToPrefix {
+public class InfixToPrefixShortcut {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

@@ -1,17 +1,17 @@
 import java.util.Scanner;
-class Stack {
+class MyStack {
     int top = -1;
     int n;
     char[] arr;
 
-    Stack(int n) {
+    (int n) {
         this.n = n;
         arr = new char[n];
     }
 
     void push(char x) {
         if (top >= (n-1)) {
-            System.out.println("Stack Overflow");
+            System.out.println(" Overflow");
         } else {
             top = top + 1;
             arr[top] = x;
@@ -36,7 +36,7 @@ public class RecognizeString{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the String and please space at the end:");
         String s= sc.nextLine();
-        Stack st = new Stack(s.length());
+         st = new (s.length());
         
         int idx=0;
         for(int i=0;i<s.length();i++){
