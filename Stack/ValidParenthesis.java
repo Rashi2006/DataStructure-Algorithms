@@ -50,7 +50,7 @@ public class ValidParenthesis {
         System.out.println("Enter the set of parenthesis:");
         String p = sc.next();
 
-        Stack st= new Stack(p.length());
+        MyStack st= new MyStack(p.length());
         int count=0;
 
         for(int i=0;i<p.length();i++){
